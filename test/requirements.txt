@@ -1,0 +1,3 @@
+requests
+etcd3
+protobuf==3.20.0
