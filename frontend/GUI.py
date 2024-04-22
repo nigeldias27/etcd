@@ -22,12 +22,15 @@ else:
         key = st.text_input("Enter the Key",key="2")
         val = st.text_input("Enter the Value")
         if st.button("Put"):
-            putdict = {"key":key,"val":val}
-            print(putdict)
-            res = requests.post("http://backend:8000/putKeyVal",json=putdict)
-            st.text(res.content)
+            if key=='':
+                st.text("Input the key")
+            else:
+                putdict = {"key":key,"val":val}
+                print(putdict)
+                res = requests.post("http://backend:8000/putKeyVal",json=putdict)
+                st.text(res.content)
     with st.expander("Delete Key-Value Pair"):
          delKey = st.text_input("Enter the Key",key="3")
          if st.button("Delete"):
             getKey = requests.get("http://backend:8000/deleteVal?key="+delKey.replace(" ","+"))
-            st.text(getRes.content)
+            st.text(getKey.content)
